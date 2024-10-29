@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -21,7 +22,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './index.html', // Ruta de tu archivo HTML
+      template: './index.html', // Archivo HTML personalizado
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'images', to: 'images' }, // Copia la carpeta images a dist/images
+      ],
     }),
   ],
   mode: 'production',
